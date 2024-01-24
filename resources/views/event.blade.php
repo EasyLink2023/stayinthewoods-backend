@@ -85,13 +85,13 @@
                                             <td>
                                                 <a href="{{ route('event.delete', $value->id) }}"
                                                     class="btn btn-danger">Delete</a>
-                                                    @if ($value->status == '0')
+                                                @if ($value->status == '0')
                                                     <a href="{{ route('event.update-status', $value->id) }}"
                                                         class="btn btn-success">Activate</a>
-                                                    @else
+                                                @else
                                                     <a href="{{ route('event.update-status', $value->id) }}"
                                                         class="btn btn-danger">Deactivate</a>
-                                                    @endif
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -109,7 +109,7 @@
     </div>
     @push('scipts')
         <script src="{{ asset('jquery-3.5.1.min.js') }}"></script>
-        <script src="{{ asset('summernote.min.js') }}"></script>
+        <script src="{{ asset('summernote/summernote-lite.min.js') }}"></script>
 
         <script>
             (function() {
