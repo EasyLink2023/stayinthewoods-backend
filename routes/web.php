@@ -25,4 +25,5 @@ Route::group(['middlware'=>'auth'], function() {
     Route::get('/event', [App\Http\Controllers\EventController::class, 'index'])->name('event.index');
     Route::post('/event', [App\Http\Controllers\EventController::class, 'create'])->name('event.create');
     Route::get('/delete-event/{id}', [App\Http\Controllers\EventController::class, 'delete'])->name('event.delete');
+    Route::get('/update-status/{id}', [App\Http\Controllers\EventController::class, 'updateStatus'])->name('event.update-status');
 });

@@ -53,4 +53,17 @@ class EventController extends Controller
         $event->delete();
         return redirect()->back()->with('success-delete', 'Event deleted Successfully');
     }
+
+    public function updateStatus($id) {
+        $eventId = $id;
+        $event = Event::find($eventId);
+
+        if (!$event) {
+            return redirect()->back()->with('error-delete', 'No Event Found');
+        }
+
+        $event->status = $event->status == '0' ? '1' : '0';
+        $event->save();
+        return redirect()->back()->with('success-delete', 'Event updated Successfully');
+    }
 }

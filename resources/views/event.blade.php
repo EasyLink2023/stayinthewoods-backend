@@ -85,6 +85,13 @@
                                             <td>
                                                 <a href="{{ route('event.delete', $value->id) }}"
                                                     class="btn btn-danger">Delete</a>
+                                                    @if ($value->status == '0')
+                                                    <a href="{{ route('event.update-status', $value->id) }}"
+                                                        class="btn btn-success">Activate</a>
+                                                    @else
+                                                    <a href="{{ route('event.update-status', $value->id) }}"
+                                                        class="btn btn-danger">Deactivate</a>
+                                                    @endif
                                             </td>
                                         </tr>
                                     @endforeach

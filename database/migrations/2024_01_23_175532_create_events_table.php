@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('time')->nullable();
             $table->string('cover_image')->nullable();
             $table->longText('note')->nullable();
+            $table->enum('status',['0','1'])->default('1')->comment('0 for inactive and 1 for inactive');
             $table->timestamps();
         });
     }
