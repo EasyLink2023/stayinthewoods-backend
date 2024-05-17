@@ -24,11 +24,11 @@
 <body>
     <div id="app">
         @if (Route::currentRouteName() != 'login')
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #3f1324">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{-- {{ config('app.name', 'Laravel') }} --}}
-                        <img src="https://www.stayinthewoods.com/assets/image/logo.svg" alt="Colour Woodland Logo" style="width: 100%">
+                        <img src="https://www.stayinthewoods.com/assets/image/logo_white.svg" alt="Colour Woodland Logo" style="width: 200px">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

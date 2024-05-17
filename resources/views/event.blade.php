@@ -22,7 +22,7 @@
                             <label for="Event address">Event Address</label>
                             <input type="text" class="form-control mt-2 mb-2" id="event_address" name="event_address"
                                 required>
-                            <label for="Event Image">Event Address</label>
+                            <label for="Event Image">Event Image</label>
                             <input type="file" class="form-control mt-2 mb-2" id="event_image" name="event_image"
                                 required>
                             <label for="Date">Event Date</label>
@@ -51,7 +51,7 @@
                     <div class="card-header">
                         All Events
                     </div>
-                    <div class="card-body">
+                    <div class="card-body mx-auto">
                         <table class="table table-responsive table-bordered">
                             <thead>
                                 <th>ID #</th>
@@ -76,12 +76,16 @@
                                             </td>
                                             <td>
                                                 @php
-                                                    $carbonDate = Carbon\Carbon::createFromFormat('Y-m-d', $value->date);
+                                                    $carbonDate = Carbon\Carbon::createFromFormat(
+                                                        'Y-m-d',
+                                                        $value->date,
+                                                    );
                                                     $convertedDate = $carbonDate->format('l, M j');
                                                 @endphp
                                                 {{ $convertedDate ?? $value->date }}</td>
                                             <td>{{ $value->time }}</td>
-                                            <td>{!! $value->note !!}</td>
+                                            <td style="word-wrap: break-word;max-width: 150px;overflow: hidden;">
+                                                {!! $value->note !!}</td>
                                             <td>
                                                 <a href="{{ route('event.delete', $value->id) }}"
                                                     class="btn btn-danger">Delete</a>
@@ -102,6 +106,11 @@
                                 @endif
                             </tbody>
                         </table>
+                        @if ($events->hasPages())
+                            <div class="pagination-wrapper d-flex justify-content-center">
+                                {{ $events->links() }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
