@@ -18,7 +18,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link href="{{ asset('summernote/summernote-lite.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/style.css') }}" rel="stylesheet">
-
+    @stack('css')
 </head>
 
 <body>
@@ -61,6 +61,11 @@
                                 @if (Route::has('event.index'))
                                     <li class="nav-item">
                                         <a class="nav-link text-light" href="{{ route('event.index') }}">{{ __('Event') }}</a>
+                                    </li>
+                                @endif
+                                @if (Route::has('rfps.index'))
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light" href="{{ route('rfps.index') }}">{{ __('RFPS') }}</a>
                                     </li>
                                 @endif
                                 <li class="nav-item dropdown">

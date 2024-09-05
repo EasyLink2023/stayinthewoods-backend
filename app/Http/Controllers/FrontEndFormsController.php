@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\FrontEndForms;
 use Illuminate\Support\Facades\Mail;
@@ -34,5 +35,21 @@ class FrontEndFormsController extends Controller
                 'message' => $th->getMessage()
             ]);
         }
+    }
+
+    public function index(Request $request) 
+    {
+        if ($request->has('start_date') && $request->has('end_date')) {
+            $start_date = Carbon::parse($request->input('start_date'))->startOfDay();
+            $end_date = Carbon::parse($request->input('end_date'))->endOfDay();
+            $data['rfps'] = FrontEndForms::where('created_at', '>=', $start_date)
+                ->where('created_at', '<=', $end_date)
+                ->orderBy('id', 'desc')
+                ->get();
+        } else {
+            $data['rfps'] = FrontEndForms::orderBy('id', 'desc')->get();
+        }
+        return view('rfps', $data);
+        
     }
 }
