@@ -1,9 +1,13 @@
 @extends('layouts.app')
-
+@push('css')
+    <link rel="stylesheet" href="{{ asset('adminlte/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+@endpush
 @section('content')
     <div class="container-jumbotron px-5">
         <div class="row">
-            <div class="col-3">
+            <div class="col-md-3 col-sm-12">
                 @if (session()->has('success'))
                     <div class="alert alert-success">
                         {{ session()->get('success') }}
@@ -36,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-md-9 col-sm-12">
                 @if (session()->has('success-delete'))
                     <div class="alert alert-success">
                         {{ session()->get('success-delete') }}
@@ -52,7 +56,7 @@
                         All Events
                     </div>
                     <div class="card-body mx-auto">
-                        <table class="table table-responsive table-bordered">
+                        <table id="event-table" class="table table-responsive table-bordered">
                             <thead>
                                 <th>ID #</th>
                                 <th>Event Name</th>
@@ -106,41 +110,54 @@
                                 @endif
                             </tbody>
                         </table>
-                        @if ($events->hasPages())
-                            <div class="pagination-wrapper d-flex justify-content-center">
-                                {{ $events->links() }}
-                            </div>
-                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @push('scipts')
-        <script src="{{ asset('jquery-3.5.1.min.js') }}"></script>
-        <script src="{{ asset('summernote/summernote-lite.min.js') }}"></script>
-
-        <script>
-            (function() {
-                'use strict'
-                var forms = document.querySelectorAll('.event_form')
-                Array.prototype.slice.call(forms)
-                    .forEach(function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (!form.checkValidity()) {
-                                event.preventDefault()
-                                event.stopPropagation()
-                            }
-
-                            form.classList.add('was-validated')
-                        }, false)
-                    })
-            })()
-        </script>
-        <script>
-            $(document).ready(function() {
-                $('#summernote').summernote();
-            });
-        </script>
-    @endpush
 @endsection
+@push('scipts')
+    <script src="{{ asset('jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('summernote/summernote-lite.min.js') }}"></script>
+    <script src="{{ asset('adminlte/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('adminlte/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('adminlte/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('adminlte/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('adminlte/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('adminlte/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('adminlte/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('adminlte/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('adminlte/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <script>
+        (function() {
+            'use strict'
+            var forms = document.querySelectorAll('.event_form')
+            Array.prototype.slice.call(forms)
+                .forEach(function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+        });
+    </script>
+    <script>
+        $(function() {
+            $("#event-table").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "order": [[0, "desc"]],
+            }).buttons().container().appendTo('#event-table_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+@endpush

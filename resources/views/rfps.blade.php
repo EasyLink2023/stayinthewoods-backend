@@ -12,19 +12,19 @@
                             <div class="card-header">
                                 <form method="GET" action="{{ route('rfps.index') }}">
                                     <div class="row">
-                                        <div class="col-3 ms-auto">
+                                        <div class="col-md-3 col-sm-12 ms-auto">
                                             <label for="">Start Date</label>
                                             <input type="date" name="start_date" required class="form-control" value="{{ app('request')->input('start_date') }}">
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-md-3 col-sm-12 ">
                                             <label for="">End Date</label>
                                             <input type="date" name="end_date"  required class="form-control" value="{{ app('request')->input('end_date') }}">
                                         </div>
-                                        <div class="col-1">
+                                        <div class="col-md-1 col-sm-12 ">
                                             <input type="submit" value="Filter" class="btn btn-warning" style="margin-top: 23px;">
                                         </div>
                                         @if( app('request')->input('end_date') && app('request')->input('start_date'))
-                                            <div class="col-1">
+                                            <div class="col-md-1 col-sm-12 ">
                                                 <a href="{{ route('rfps.index') }}" class="btn btn-primary" style="margin-top: 23px;"> Clear </a>
                                             </div>
                                         @endif
