@@ -17,8 +17,7 @@ class FrontEndFormsController extends Controller
             $user_subject = "The Woodlands Inn {$request->page_name} Request Submitted";
             Mail::send('emails.admin', ['form' => $form], function ($message) use ($form, $admin_subject) {
                 $message->to('sales@thewoodlandsresort.com')
-                    ->cc(['sales@thewoodlandsresort.com', 'alertsthewoodlands@gmail.com', 'smenon66@gmail.com', 'sales.team@thewoodlandsresort.com', 'Annie.john@thewoodlandsresort.com', 'gail.kapson@thewoodlandsresort.com', 'marketing@thewoodlandsresort.com', 'Abigail.V@thewoodlandsresort.com', 'kadir@easylinkindia.com','easylinkamerica@gmail.com','info@easylinkindia.com'])
-                    ->bcc(['webmaster@easylinkindia.com', 'dev@easylinkindia.com']);
+                    ->cc(['sales@thewoodlandsresort.com', 'alertsthewoodlands@gmail.com', 'smenon66@gmail.com', 'sales.team@thewoodlandsresort.com', 'Annie.john@thewoodlandsresort.com', 'gail.kapson@thewoodlandsresort.com', 'marketing@thewoodlandsresort.com', 'Abigail.V@thewoodlandsresort.com', 'kadir@easylinkindia.com','easylinkamerica@gmail.com','info@easylinkindia.com']);
                 $message->subject($admin_subject);
             });
             Mail::send('emails.user', ['form' => $form], function ($message) use ($form, $user_subject) {
